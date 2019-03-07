@@ -1,0 +1,8 @@
+<div>
+  <ul *ngIf="products else noData">
+    <li *ngFor="let product of products">
+      {{product.id}} {{product.productName}} {{product.modelCode}} {{product.serialNumber}}
+    </li>
+  </ul>
+  <ng-template #noData>No Data Available</ng-template>
+</div>
