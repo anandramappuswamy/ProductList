@@ -16,7 +16,7 @@ export class ProductService {
   data$: Observable<Product[]> = this.dataStore.asObservable();
   products: Product[];
   BaseUri = "http://localhost:50324/v1";
-
+  
   constructor(private http: HttpClient) { }
 
   httpGetProducts$ = this.http.get<Product[]>(`${this.BaseUri}/products`);
@@ -30,6 +30,7 @@ export class ProductService {
       }),
       catchError(err => {
         console.log('providing fallback value');
+        // better to show error message in the page
         window.alert(err.message);
         return of([]);
       })

@@ -2,7 +2,7 @@ import { TestBed, inject, getTestBed, fakeAsync, tick } from '@angular/core/test
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProductService } from './product-service.service';
 import { Product } from '../Model/product';
-import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('ProductServiceService', () => {
 
@@ -46,5 +46,21 @@ describe('ProductServiceService', () => {
       expect(request.request.method).toBe("GET");
       request.flush(dummyProducts);
     });
-  });
+  });  
+
+
+  it('should handle Error Observable', inject([ProductService], (service: ProductService) => {
+
+    const errorMessage = 'deliberate 404 error';
+
+    service.httpGetProducts$.subscribe(
+        data => fail('should have failed with the 404 error'),
+        (error: HttpErrorResponse) => {
+          expect(error.status).toEqual(404, 'status');
+          expect(error.error).toEqual(errorMessage, 'message');
+        });
+
+    const request = httpMock.expectOne(`${service.BaseUri}/products`);    
+    request.flush(errorMessage, { status: 404, statusText: 'Not Found' });
+  }));
 });
