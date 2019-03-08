@@ -1,8 +1,14 @@
-<div>
-  <ul *ngIf="products else noData">
-    <li *ngFor="let product of products">
-      {{product.id}} {{product.productName}} {{product.modelCode}} {{product.serialNumber}}
-    </li>
-  </ul>
-  <ng-template #noData>No Data Available</ng-template>
-</div>
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>Product Name</th>
+    <th>Model Code</th>
+    <th>Serial Number</th>
+  </tr>  
+  <tr *ngFor="let product of products">
+    <td style="text-align:center">{{product.id}}</td>
+    <td style="text-align:center">{{product.productName}}</td>
+    <td style="text-align:center">{{product.modelCode}}</td>
+    <td style="text-align:center">{{product.serialNumber}}</td>
+  </tr>
+</table>
