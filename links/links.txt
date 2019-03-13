@@ -1,0 +1,7 @@
+https://dev.to/avatsaev/simple-state-management-in-angular-with-only-services-and-rxjs-41p8
+
+https://stackoverflow.com/questions/51037295/angular-rxjs-behaviorsubject-value-sets-value-without-next-not-immutable
+
+https://stackoverflow.com/questions/53532992/returning-array-as-observable-to-behavior-subject
+
+HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
